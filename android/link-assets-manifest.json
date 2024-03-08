@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Dragrace.ttf",
+      "sha1": "4b0ec01b7d48e49f75063fe22df596f27375b5e5"
+    },
+    {
+      "path": "src/assets/fonts/MadimiOne-Regular.ttf",
+      "sha1": "431592c440f0f171a09ed3850721cfd988416ef2"
+    },
+    {
+      "path": "src/assets/fonts/name.ttf",
+      "sha1": "fab5915962ec0b666b12f5d51f17a5d6f98ba648"
+    }
+  ]
+}
