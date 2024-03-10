@@ -26,14 +26,14 @@ const Splash = () => {
     const imageAnimationTimeout = setTimeout(() => {
       Animated.timing(imageTranslateY, {
         toValue: -1000,
-        duration: 2000,
+        duration: 3000,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
 
-      Animated.timing(svgTranslateY, { // Add this block
+      Animated.timing(svgTranslateY, { 
         toValue: -1000,
-        duration: 2000,
+        duration: 3000,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
@@ -74,7 +74,7 @@ const Splash = () => {
           transform: [{ translateY: imageTranslateY }],
         }}
       />
-      <Animated.View style={{ transform: [{ translateY: svgTranslateY }], position: 'absolute', zIndex:2, width: SCREEN_WIDTH, height: SCREEN_HEIGHT, bottom:'-20%' }}>
+      <Animated.View style={{ transform: [{ translateY: svgTranslateY }], position: 'absolute', zIndex:2, width: SCREEN_WIDTH, height: SCREEN_HEIGHT, bottom:'-55%' }}>
         <Svg width={SCREEN_WIDTH} height={SCREEN_HEIGHT*10}>
           <Path
             d={`M${SCREEN_WIDTH * 0.001} ${SCREEN_WIDTH * 0.999} 

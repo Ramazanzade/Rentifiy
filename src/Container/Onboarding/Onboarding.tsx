@@ -1,25 +1,44 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Image, SafeAreaView, StatusBar, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, Modal } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../Utils/common';
 import LottieView from 'lottie-react-native';
 import LoadingPage from '../../Contance/Loading-Page/LoadingPage';
-
+import Svg1 from '../../assets/imge/Onboarding-imge/1.svg'
+import Svg2 from '../../assets/imge/Onboarding-imge/2.svg'
+import Svg3 from '../../assets/imge/Onboarding-imge/3.svg'
+import Svg4 from '../../assets/imge/Onboarding-imge/4.svg'
+import LinearGradient from 'react-native-linear-gradient';
 const images = [
-  { id: 1, image: require('../../../src/assets/imge/Onboarding-imge/1.png'), title: 'Welcome to Bloomify', text: 'Explore a world of vibrant blooms and delightful gifts tailored for every occasion. Lets start your journey with Bloomify' },
-  { id: 2, image: require('../../../src/assets/imge/Onboarding-imge/2.png'), title: 'Personalized Gifting Made Easy', text: 'Customize your gifting experience, from elegant bouquets to thoughtful gifts, all at your fingertips with Bloomify. Start spreading joy today!', },
+  { id: 1, uri: 'Svg1', title: 'Welcome', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' },
+  { id: 2, uri: 'Svg2', title: 'Rent a car', text: 'Customize your gifting experience, from elegant bouquets to thoughtful gifts, all at your fingertips with Bloomify. Start spreading joy today!', },
+  { id: 3, uri: 'Svg3', title: 'Security', text: 'Customize your gifting experience, from elegant bouquets to thoughtful gifts, all at your fingertips with Bloomify. Start spreading joy today!', },
+  { id: 4, uri: 'Svg4', title: 'Fast Process', text: 'Customize your gifting experience, from elegant bouquets to thoughtful gifts, all at your fingertips with Bloomify. Start spreading joy today!', },
+
 ];
 
-const Slide = ({ item }: any) => {
+const icons = {
+  Svg1: Svg1,
+  Svg2: Svg2,
+  Svg3: Svg3,
+  Svg4: Svg4
+
+
+};
+type Item = {
+  uri: 'Svg1' | 'Svg2' | 'Svg3' | 'Svg4';
+  title: string;
+  text: string;
+};
+const Slide = ({ item }: { item: Item }) => {
+  const Icon = icons[item.uri];
+
   return (
     <View style={{ alignItems: 'center', width: SCREEN_WIDTH }}>
-      <Image
-        source={item?.image}
-        style={{ height: SCREEN_HEIGHT / 2, width: SCREEN_WIDTH }}
-      />
+      <Text style={{ width: SCREEN_WIDTH - 60, textAlign: 'center', color: '#000000', fontSize: 38, fontWeight: '700', marginVertical: '5%' }}>{item?.title}</Text>
+      <Icon />
       <View>
-        <Text style={{ width: SCREEN_WIDTH - 60, textAlign: 'center', color: '#000000', fontSize: 22, fontWeight: '700', marginTop: '5%' }}>{item?.title}</Text>
-        <Text style={{ width: SCREEN_WIDTH - 60, textAlign: 'center', color: '#667085', fontSize: 13, marginTop: '5%' }}>{item?.text}</Text>
+        <Text style={{ width: SCREEN_WIDTH - 60, textAlign: 'center', color: '#667085', fontSize: 13, marginTop: '9%' }}>{item?.text}</Text>
       </View>
     </View>
   );
@@ -27,7 +46,7 @@ const Slide = ({ item }: any) => {
 
 const Onboarding = ({ navigation }: any) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setloading] = useState(false);
   const ref = useRef<any>();
   const updateCurrentSlideIndex = (e: any) => {
     const contentOffsetX = e.nativeEvent.contentOffset.x;
@@ -51,24 +70,23 @@ const Onboarding = ({ navigation }: any) => {
     setCurrentSlideIndex(lastSlideIndex);
   };
   const goaccountpage = () => {
-    setIsLoading(true);
+    setloading(true);
     setTimeout(() => {
-      setIsLoading(false);
+      setloading(false);
       navigation.navigate('AccountSetupScreen')
     }, 3000);
 
   }
   const Footer = () => {
     return (
-      <View style={{ height: SCREEN_HEIGHT * 0.2, justifyContent: 'space-between',alignSelf:'center' }}>
+      <View style={{ height: SCREEN_HEIGHT * 0.2, justifyContent: 'space-between', alignSelf: 'center' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
           {images.map((_, index) => (
             <View
               key={index}
               style={[
-                { height: 10, width: 10, backgroundColor: '#E4E7EC', marginHorizontal: 3, borderRadius: 50 },
-                currentSlideIndex === index && { backgroundColor: '#F63D68', height: 10, width: 10 },
-                currentSlideIndex === index+1 && { backgroundColor: 'rgba(253, 111, 142, 1)', height: 10, width: 10 },
+                { height: 10, width: 10, backgroundColor: 'rgba(248, 207, 141, 1)', marginHorizontal: 3, borderRadius: 50 },
+                currentSlideIndex === index && { backgroundColor: 'rgba(244, 183, 85, 1) ', height: 8, width: 50, alignSelf: 'center' },
               ]}
             />
           ))}
@@ -77,16 +95,22 @@ const Onboarding = ({ navigation }: any) => {
           {currentSlideIndex === images.length - 1 ? (
             <View style={{ height: 60 }}>
               <TouchableOpacity
-                style={[{ flex: 1, height: 100, width: SCREEN_WIDTH - 40, borderRadius: 70, backgroundColor: '#F63D68', justifyContent: 'center', alignItems: 'center' }, { backgroundColor: '#F63D68' }]}
-                onPress={() => goaccountpage()}>
-                <Text style={{ fontWeight: 'bold', fontSize: 17, color: '#FFFFFF' }}>Get Start</Text>
+                onPress={() => goaccountpage()}
+                style={{ flex: 1, height: 100, width: SCREEN_WIDTH - 40, borderRadius: 70 }}
+              >
+                <LinearGradient
+                  colors={['rgba(244, 183, 85, 0.27)', 'rgba(244, 183, 85, 0.5)', 'rgba(244, 183, 85, 0.7)', 'rgba(244, 183, 85, 0.75)', 'rgba(244, 183, 85, 0.9)', 'rgba(244, 183, 85, 1)']}
+                  style={{ flex: 1, borderRadius: 70, justifyContent: 'center', alignItems: 'center' }}
+                >
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: '#FFFFFF' }}>Get Start</Text>
+                </LinearGradient>
               </TouchableOpacity>
             </View>
           ) : (
             <View style={{ flexDirection: 'row', width: SCREEN_WIDTH - 40 }}>
               <TouchableOpacity
                 activeOpacity={0.8}
-                style={[{ flex: 1, height: 60, borderRadius: 50, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }, { backgroundColor: '#F2F4F7' }]}
+                style={[{ flex: 1, height: 50, borderRadius: 50, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }, { backgroundColor: '#F2F4F7' }]}
                 onPress={skip}>
                 <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'rgba(102, 112, 133, 1)' }}>Skip</Text>
               </TouchableOpacity>
@@ -94,8 +118,14 @@ const Onboarding = ({ navigation }: any) => {
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={goToNextSlide}
-                style={{ flex: 1, height: 60, borderRadius: 50, backgroundColor: '#F63D68', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 17, color: '#ffffff' }}>Next</Text>
+                style={{ flex: 1, height: 50, }}>
+                <LinearGradient
+                  colors={['rgba(244, 183, 85, 0.27)', 'rgba(244, 183, 85, 0.5)', 'rgba(244, 183, 85, 0.7)', 'rgba(244, 183, 85, 0.75)', 'rgba(244, 183, 85, 0.9)', 'rgba(244, 183, 85, 1)']}
+                  style={{ borderRadius: 50, justifyContent: 'center', alignItems: 'center', flex: 1 }}
+                >
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: '#ffffff' }}>Next</Text>
+                </LinearGradient>
+
               </TouchableOpacity>
             </View>
           )}
@@ -106,28 +136,31 @@ const Onboarding = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      {isLoading ? (
-        <LoadingPage />
-      ) : (
-        <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex:1 }}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={loading}
+        >
+          <LoadingPage />
+        </Modal>
+       
+        <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
           <View>
+            <Text style={{ fontFamily: 'Dragrace', color: '#000000', textAlign: 'center', fontSize: 50, marginTop: '10%' }}>RENTIFIY</Text>
             <FlatList
               ref={ref}
               onMomentumScrollEnd={updateCurrentSlideIndex}
-              // contentContainerStyle={{ height: SCREEN_HEIGHT * 0.75 }}
               showsHorizontalScrollIndicator={false}
               horizontal
               data={images}
               pagingEnabled
-              renderItem={({ item }) => <Slide item={item} />}
+              renderItem={({ item }: any) => <Slide item={item} />}
             />
           </View>
           <View >
             <Footer />
           </View>
         </View>
-      )}
-
     </SafeAreaView>
   );
 };
