@@ -28,26 +28,20 @@ const AccountSetup = ({ navigation }: any) => {
             <View style={{ backgroundColor: '#FFFFFF', height: SCREEN_HEIGHT }}>
                 <Accont_Headr />
                 <Accses_Button navigation={navigation} setloading={setloading} />
-                <View style={{marginTop: '3%' }}>
+                <View>
                     <Or_line/>
                 </View>
                 <View style={{ position: 'relative' }}>
                     <View style={{ display: 'flex', flexDirection: 'row', marginTop: '5%', justifyContent: 'space-between' }}>
-                        <View style={{ marginTop: '3%' }}>
-                            <Star />
-                        </View>
                         <View style={{ display: 'flex', flexDirection: "column", justifyContent: 'space-between', flex: 1 }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', marginLeft: '12%', marginTop: '7%' }}>
+                            <View style={{ display: 'flex', flexDirection: 'column', alignSelf:'center' }}>
                                 <Google_entry />
                                 <Apple_entry />
                                 <Facebook_entry />
                             </View>
-                            <View style={{ alignSelf: 'center', marginTop: '25%' }}>
+                            <View style={{ alignSelf: 'center', marginTop: '4%' }}>
                                 <Footer  navigation={navigation} />
                             </View>
-                        </View>
-                        <View style={{ marginTop: '-7%' }}>
-                            <Vector />
                         </View>
                     </View>
                 </View>
