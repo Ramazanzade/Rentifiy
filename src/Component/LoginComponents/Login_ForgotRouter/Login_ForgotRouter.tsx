@@ -5,13 +5,10 @@ import { SCREEN_WIDTH } from '../../../Utils/common'
 
 const Login_ForgotRouter = ({navigation}:any) => {
   return (
-    <View style={{display:'flex',flexDirection:'row', justifyContent:'space-between', width:SCREEN_WIDTH-20, alignSelf:'flex-start'}}>
-    <View>
-        <Forgotvector/>
-    </View>
-    <View style={{marginTop:'4%'}}>
+    <View style={{display:'flex',flexDirection:'row', justifyContent:'flex-end', width:SCREEN_WIDTH-20, alignSelf:'flex-start'}}>
+    <View style={{marginVertical:'5%'}}>
         <TouchableOpacity onPress={()=>navigation.navigate('ForgotOtpScreen')}>
-            <Text style={{color:'#F63D68', fontSize:12, fontWeight:'500'}}>Forgot Password?</Text>
+            <Text style={{color:'rgba(222, 167, 77, 1)', fontSize:12, fontWeight:'500'}}>Forgot Password?</Text>
         </TouchableOpacity>
     </View>
 </View>

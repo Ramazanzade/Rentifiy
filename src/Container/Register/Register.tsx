@@ -4,22 +4,25 @@ import Register_Headr from '../../Component/RegisterComponents/Register_Headr/Re
 import Register_Input from '../../Component/RegisterComponents/Register_Input/Register_Input'
 import Register_Footer from '../../Component/RegisterComponents/Register_Footer/Register_Footer'
 import LoadingPage from '../../Contance/Loading-Page/LoadingPage'
+import { SCREEN_HEIGHT } from '../../Utils/common'
 
-const Register = ({navigation}:any) => {
-    const [loading, setloading] = useState(false);
+const Register = ({ navigation }: any) => {
+  const [loading, setloading] = useState(false);
 
   return (
-    <View style={{flex:1, backgroundColor:'#FFFFFF'}}>
-          <Modal
-                animationType="slide"
-                transparent={true}
-                visible={loading}
-            >
-                <LoadingPage />
-            </Modal>
-        <Register_Headr/>
+    <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={loading}
+      >
+        <LoadingPage />
+      </Modal>
+      <Register_Headr />
+      <View style={{marginTop:'20%'}}>
         <Register_Input navigation={navigation} setloading={setloading} />
-        <Register_Footer navigation={navigation}/>
+      </View>
+      <Register_Footer navigation={navigation} />
     </View>
   )
 }

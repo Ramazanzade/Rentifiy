@@ -35,7 +35,7 @@ const Footer = ({ navigation }: any) => {
                     Cancle();
                 }}
             >
-                <PrivacyModal navigation={navigation} onCancel={Cancle} visible={showmodal} />
+                <PrivacyModal navigation={navigation} onPress={Cancle} />
             </Modal>
         </View>
     )

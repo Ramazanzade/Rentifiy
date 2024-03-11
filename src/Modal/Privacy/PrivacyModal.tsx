@@ -5,7 +5,7 @@ import { SCREEN_WIDTH } from '../../Utils/common'
 
 
 
-const PrivacyModal = ({ navigation, onCancel, visible }: any) => {
+const PrivacyModal = ({ navigation, onPress }: any) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(17, 17, 17, 0.3)' }}>
             <View style={{ backgroundColor: '#FFFFFF', width: SCREEN_WIDTH - 50, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
@@ -15,23 +15,23 @@ const PrivacyModal = ({ navigation, onCancel, visible }: any) => {
                     </ScrollView>
                 </View>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '10%', marginBottom: '10%', width: SCREEN_WIDTH }}>
-                    <TouchableOpacity style={{ borderWidth: 1, borderColor: 'rgba(244, 183, 85, 1)', borderRadius: 10, height: 40, width: SCREEN_WIDTH / 3 }} onPress={onCancel()}>
+                    <TouchableOpacity style={{ borderWidth: 1, borderColor: 'rgba(244, 183, 85, 1)', borderRadius: 10, height: 40, width: SCREEN_WIDTH / 3 }} onPress={onPress}>
                         <Text style={{ color: 'rgba(246, 197, 119, 1)', textAlign: 'center', fontSize: 15, fontWeight: '500', marginTop: '2%' }}>Cancel</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ alignSelf: 'center', height: 40, width: SCREEN_WIDTH / 3 }}>
+                    <TouchableOpacity style={{ alignSelf: 'center', height: 40, width: SCREEN_WIDTH / 3 }} onPress={onPress}>
                         <LinearGradient
                             colors={['rgba(244, 183, 85, 0.27)', 'rgba(244, 183, 85, 0.5)', 'rgba(244, 183, 85, 0.7)', 'rgba(244, 183, 85, 0.75)', 'rgba(244, 183, 85, 0.9)', 'rgba(244, 183, 85, 1)']}
                             style={{ flex: 1, borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Text style={{ color: '#FCFCFD', textAlign: 'center', fontSize: 15, fontWeight: '500' }}>Accept</Text>
+                            <Text style={{ color: '#FCFCFD', textAlign: 'center', fontSize: 15, fontWeight: '500' }} >Accept</Text>
                         </LinearGradient>
                     </TouchableOpacity>
-                    <Modal
+                    {/* <Modal
                         animationType="slide"
                         transparent={true}
                         visible={visible}
                         onRequestClose={() => onCancel()}
-                    ></Modal>
+                    ></Modal> */}
                 </View>
             </View>
         </View>

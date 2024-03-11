@@ -14,7 +14,7 @@ const Login = ({navigation}:any) => {
             <Login_Headr />
             <Login_Input  navigation={navigation} />
             <View style={{display:'flex', flexDirection:'column', justifyContent:'space-evenly', flex:1}}>
-                <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center' }}>
+                <View style={{ display: 'flex', flexDirection:'column', alignSelf: 'center' }}>
                     <Google_entry  />
                     <Apple_entry />
                     <Facebook_entry />

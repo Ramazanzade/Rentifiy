@@ -15,9 +15,9 @@ const App = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
          {/* <Stack.Screen name="SplaScreen" component={SplasScreen} />  */}
         {/* <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} /> */}
-        <Stack.Screen name="AccountSetupScreen" component={AccountSetupScreen} />
+        {/* <Stack.Screen name="AccountSetupScreen" component={AccountSetupScreen} /> */}
         {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
-        {/* <Stack.Screen name="ForgotOtpScreen" component={ForgotOtpScreen} /> */}
+        <Stack.Screen name="ForgotOtpScreen" component={ForgotOtpScreen} />
         {/* <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>

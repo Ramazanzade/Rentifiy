@@ -5,19 +5,11 @@ import Fvector2 from '../../../assets/imge/Register-imge/Group-2.svg'
 
 const Register_Footer = ({navigation}:any) => {
     return (
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <View style={{marginTop:'-5%'}} >
-                <Fvector />
-            </View>
-            <View style={{ alignSelf: 'flex-end', display: 'flex', flexDirection: 'row', marginBottom: '6%' }}>
+        <View style={{alignSelf:'center', display:'flex', flexDirection:'row', marginTop:'10%'}}>
                 <Text style={{ color: '#A9A9A9', fontSize: 12, fontWeight: '500' }}>Have an account ? </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-                    <Text style={{ color: '#F63D68', fontSize: 12, fontWeight: '500' }}>  Log In</Text>
+                    <Text style={{ color: 'rgba(246, 197, 119, 1)', fontSize: 12, fontWeight: '500' }}>  Log In</Text>
                 </TouchableOpacity>
-            </View>
-            <View style={{ marginTop: '5%' }}>
-                <Fvector2 />
-            </View>
         </View>
     )
 }
