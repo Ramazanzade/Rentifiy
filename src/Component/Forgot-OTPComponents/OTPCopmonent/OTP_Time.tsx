@@ -6,11 +6,10 @@ import LinearGradient from 'react-native-linear-gradient';
 const OTP_Time = () => {
     const [seconds, setSeconds] = useState(10);
     const [modalVisible, setModalVisible] = useState(false);
-
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds(prevSeconds => {
-                if (prevSeconds === 0) {
+                if (prevSeconds === 0 ) {
                     clearInterval(interval);
                     setModalVisible(true);
                     return 0;
@@ -20,8 +19,12 @@ const OTP_Time = () => {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, []);
-
+    }, [modalVisible]);
+    const restartTimer = () => {
+        setSeconds(10);
+        setModalVisible(false);
+        
+    };
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
 
@@ -41,20 +44,22 @@ const OTP_Time = () => {
             >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                     <View style={{ backgroundColor: '#FFFFFF', width: SCREEN_WIDTH - 60, borderRadius: 20 }}>
-                        <View style={{ alignSelf: 'center', marginTop:'5%' }}>
+                        <View style={{ alignSelf: 'center', marginTop: '5%' }}>
                             <OtpImge />
                         </View>
-                        <Text style={{ color: 'rgba(244, 183, 85, 1)', textAlign: 'center', fontSize: 25, marginTop:'10%' }}>Resend Code</Text>
-                        <View style={{ display: 'flex', flexDirection: 'row',justifyContent:'space-evenly', marginTop:'10%', marginBottom:'5%' }}>
-                            <TouchableOpacity onPress={() => setModalVisible(false)} style={{borderWidth:1, borderColor:'rgba(244, 183, 85, 1)', width:SCREEN_WIDTH/3.5, borderRadius:10, height:SCREEN_HEIGHT/19}}>
-                                <Text style={{ color: 'rgba(246, 197, 119, 1)' , textAlign:'center'}}>Cancle</Text>
+                        <Text style={{ color: 'rgba(244, 183, 85, 1)', textAlign: 'center', fontSize: 25, marginTop: '10%' }}>Resend Code</Text>
+                        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '10%', marginBottom: '7%' }}>
+                            <TouchableOpacity onPress={() => setModalVisible(false)} style={{ borderWidth: 1, borderColor: 'rgba(244, 183, 85, 1)', width: SCREEN_WIDTH / 3.5, borderRadius: 10, height: SCREEN_HEIGHT / 19 }}>
+                                <Text style={{ color: 'rgba(246, 197, 119, 1)', textAlign: 'center', marginTop: '7%' }}>Cancle</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ borderRadius: 50, alignSelf: 'center', width:SCREEN_WIDTH/3.5}}>
+                            <TouchableOpacity style={{ borderRadius: 50, alignSelf: 'center', width: SCREEN_WIDTH / 3.5 }} onPress={() => {
+                                restartTimer();
+                            }}>
                                 <LinearGradient
                                     colors={['rgba(244, 183, 85, 0.27)', 'rgba(244, 183, 85, 0.5)', 'rgba(244, 183, 85, 0.7)', 'rgba(244, 183, 85, 0.75)', 'rgba(244, 183, 85, 0.9)', 'rgba(244, 183, 85, 1)']}
-                                    style={{ flex: 1, borderRadius:10, justifyContent: 'center', alignItems: 'center' }}
+                                    style={{ flex: 1, borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}
                                 >
-                                    <Text style={{ textAlign: 'center', fontSize: 15, color: '#FFFFFF', fontWeight: '500',  }}>Resend</Text>
+                                    <Text style={{ textAlign: 'center', fontSize: 15, color: '#FFFFFF', fontWeight: '500', }}>Resend</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
                         </View>
