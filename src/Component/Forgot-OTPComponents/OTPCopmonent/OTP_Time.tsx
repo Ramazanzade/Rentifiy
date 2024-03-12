@@ -28,9 +28,6 @@ const OTP_Time = () => {
                 <Text style={{ color: 'rgba(172, 181, 187, 1)', fontSize: 12, fontWeight: '600' }}>Send code reload in</Text>
                 <Text style={{ color: 'rgba(246, 61, 104, 1)', fontSize: 15, fontWeight: '600' }}>0{minutes}:{remainingSeconds < 10 ? '0' : ''}{remainingSeconds}</Text>
             </View>
-            <View style={{marginTop:'-5%'}} >
-                <Imge />
-            </View>
         </View>
     );
 };
