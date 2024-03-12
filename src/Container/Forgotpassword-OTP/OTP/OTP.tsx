@@ -7,7 +7,7 @@ const OTP = ({navigation, pinCount}:any) => {
     return (
         <View style={{flex:1, backgroundColor:'#FFFFFF'}}>
             <OTP_Headr navigation={navigation}/>
-            <OTP_Body numberOfInputs={4} />
+            <OTP_Body numberOfInputs={4}  navigation={navigation} />
         </View>
     )
 }

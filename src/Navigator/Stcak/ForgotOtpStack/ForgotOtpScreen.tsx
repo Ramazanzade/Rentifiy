@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const ForgotOtpScreen = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} >
-            {/* <Stack.Screen name="Forgot" component={Forgot} /> */}
+            <Stack.Screen name="Forgot" component={Forgot} />
             <Stack.Screen name="OTP" component={OTP} />
             <Stack.Screen name="NewPassword" component={NewPassword} />
         </Stack.Navigator>

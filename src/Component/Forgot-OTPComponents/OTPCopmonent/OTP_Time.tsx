@@ -3,15 +3,17 @@ import { View, Text, Modal, Button, TouchableOpacity } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../Utils/common';
 import OtpImge from '../../../assets/imge/ForgotOtp-imge/6.svg'
 import LinearGradient from 'react-native-linear-gradient';
-const OTP_Time = () => {
+const OTP_Time = ({ navigation }: any) => {
     const [seconds, setSeconds] = useState(10);
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds(prevSeconds => {
-                if (prevSeconds === 0 ) {
+                if (prevSeconds === 0) {
                     clearInterval(interval);
-                    setModalVisible(true);
+                    if (navigation.isFocused()) { 
+                        setModalVisible(true);
+                    }
                     return 0;
                 }
                 return prevSeconds - 1;
@@ -23,7 +25,7 @@ const OTP_Time = () => {
     const restartTimer = () => {
         setSeconds(10);
         setModalVisible(false);
-        
+
     };
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -49,7 +51,7 @@ const OTP_Time = () => {
                         </View>
                         <Text style={{ color: 'rgba(244, 183, 85, 1)', textAlign: 'center', fontSize: 25, marginTop: '10%' }}>Resend Code</Text>
                         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '10%', marginBottom: '7%' }}>
-                            <TouchableOpacity onPress={() => setModalVisible(false)} style={{ borderWidth: 1, borderColor: 'rgba(244, 183, 85, 1)', width: SCREEN_WIDTH / 3.5, borderRadius: 10, height: SCREEN_HEIGHT / 19 }}>
+                            <TouchableOpacity onPress={() => navigation.navigate('NewPassword')} style={{ borderWidth: 1, borderColor: 'rgba(244, 183, 85, 1)', width: SCREEN_WIDTH / 3.5, borderRadius: 10, height: SCREEN_HEIGHT / 19 }}>
                                 <Text style={{ color: 'rgba(246, 197, 119, 1)', textAlign: 'center', marginTop: '7%' }}>Cancle</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ borderRadius: 50, alignSelf: 'center', width: SCREEN_WIDTH / 3.5 }} onPress={() => {
